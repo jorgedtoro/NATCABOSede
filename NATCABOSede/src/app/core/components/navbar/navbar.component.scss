@@ -1,0 +1,13 @@
+/* src/app/core/components/navbar/navbar.component.scss */
+@import "../../../../styles/variables";
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #fff !important;
+  &:hover {
+    color: $primary-color !important;
+  }
+}

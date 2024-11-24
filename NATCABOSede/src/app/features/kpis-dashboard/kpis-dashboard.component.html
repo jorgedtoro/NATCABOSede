@@ -1,0 +1,124 @@
+<!-- src/app/features/kpis-dashboard/components/kpis-dashboard/kpis-dashboard.component.html -->
+<div class="container mt-5" *ngIf="kpisData; else loading">
+  <h1 class="text-center mb-4">Línea 1 - KPIs Dashboard</h1>
+  <!-- En caso de error al traer los datos -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <div class="row g-4">
+    <!-- Columna izquierda -->
+    <div class="col-md-4">
+      <!-- Cliente -->
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">Cliente</h5>
+          <p class="card-text fs-4">Cliente ABC</p>
+          <!-- TODO: hacerlo dinámico -->
+        </div>
+      </div>
+
+      <!-- Producto -->
+      <div class="card shadow-sm mt-3">
+        <div class="card-body text-center">
+          <h5 class="card-title">Producto</h5>
+          <p class="card-text fs-4">Producto XYZ</p>
+          <!-- TODO:Actualizar dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Confección -->
+      <div class="card shadow-sm mt-3">
+        <div class="card-body text-center">
+          <h5 class="card-title">Confección</h5>
+          <p class="card-text fs-4">Confección 123</p>
+          <!-- TODO:Actualizar dinámicamente -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna central -->
+    <div class="col-md-4">
+      <!-- KPI Coste -->
+      <div class="card text-white bg-warning shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">Coste</h5>
+          <p class="display-5">
+            {{ kpisData.costeMOD | number : "1.2-2" }} €/Kg
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-3">
+        <div class="col-6">
+          <!-- Producción -->
+          <div class="card text-white bg-success shadow-sm">
+            <div class="card-body text-center">
+              <h5 class="card-title">Producción</h5>
+              <p class="display-6">{{ kpisData.pm | number : "1.2-2" }} PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <!-- Extrapeso -->
+          <div class="card text-white bg-danger shadow-sm">
+            <div class="card-body text-center">
+              <h5 class="card-title">Extrapeso</h5>
+              <p class="display-6">{{ kpisData.extrapeso }} gr</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="col-md-4">
+      <!-- Hora Inicio -->
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">Hora Inicio</h5>
+          <p class="card-text fs-4">
+            {{ kpisData.horaInicioLote | date : "HH:mm" }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Estado del Pedido -->
+      <div class="card shadow-sm mt-3">
+        <div class="card-body text-center">
+          <h5 class="card-title">Estado del Pedido</h5>
+          <div class="progress" style="height: 30px">
+            <div
+              class="progress-bar bg-success progress-bar-striped"
+              role="progressbar"
+              [style.width.%]="kpisData.porcentajePedido"
+              [attr.aria-valuenow]="kpisData.porcentajePedido"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {{ kpisData.porcentajePedido | number : "1.2-2" }}%
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hora Fin Estimada -->
+      <div class="card shadow-sm mt-3">
+        <div class="card-body text-center">
+          <h5 class="card-title">Hora Fin Estimada</h5>
+          <p class="card-text fs-4">
+            {{ kpisData.horaFinAproximada | date : "HH:mm" }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="text-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p>Cargando datos...</p>
+  </div>
+</ng-template>

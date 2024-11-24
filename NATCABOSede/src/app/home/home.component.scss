@@ -1,0 +1,14 @@
+/* src/app/home/components/home/home.component.scss */
+@import "../../../src/styles/variables";
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  color: $primary-color;
+}
+
+p {
+  font-size: 1.2rem;
+}
